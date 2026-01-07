@@ -1,0 +1,88 @@
+diff -u -r a/configure.ac b/configure.ac
+--- a/configure.ac	2025-12-19 21:16:09.969354138 -0700
++++ b/configure.ac	2025-12-19 21:10:07.640886960 -0700
+@@ -260,6 +260,7 @@
+                  po/Makefile
+                  utils/Makefile
+                  sgsnemu/Makefile
++                 pdpiface/Makefile
+                  doc/manuals/Makefile
+                  contrib/Makefile
+                  contrib/systemd/Makefile
+diff -u -r a/ggsn/ggsn.c b/ggsn/ggsn.c
+--- a/ggsn/ggsn.c	2025-12-19 21:16:09.973354364 -0700
++++ b/ggsn/ggsn.c	2025-12-19 21:11:52.918842912 -0700
+@@ -59,6 +59,7 @@
+ #include "pco.h"
+ #include "ggsn.h"
+ #include "../gtp/gtp_internal.h"
++#include "../pdpiface/pdpiface.h"
+ 
+ LLIST_HEAD(g_ggsn_list);
+ 
+@@ -402,6 +403,8 @@
+ 
+ 	LOGPPDP(LOGL_INFO, pdp, "Deleting PDP context\n");
+ 
++	sendPDPData(pdp, 1);
++
+ 	for (i = 0; i < 2; i++) {
+ 		if (pdp->peer[i]) {
+ 			member = pdp->peer[i];
+@@ -616,6 +619,8 @@
+ 	/* Transmit G-PDU sequence numbers (only) if configured in APN */
+ 	pdp->tx_gpdu_seq = apn->cfg.tx_gpdu_seq;
+ 
++	sendPDPData(pdp, 0);
++
+ 	LOGPPDP(LOGL_INFO, pdp, "Successful PDP Context Creation: APN=%s(%s), TEIC=%u, IPv4=%s, IPv6=%s\n",
+ 		name_buf, apn->cfg.name, pdp->teic_own,
+ 		addrv4 ? inet_ntop(AF_INET, &addrv4->addr.v4, straddrv4, sizeof(straddrv4)) : "none",
+diff -u -r a/ggsn/Makefile.am b/ggsn/Makefile.am
+--- a/ggsn/Makefile.am	2025-12-19 21:16:09.973354364 -0700
++++ b/ggsn/Makefile.am	2025-12-19 21:14:56.553213295 -0700
+@@ -13,12 +13,12 @@
+ 	    $(LIBOSMOVTY_CFLAGS) \
+ 	    $(NULL)
+ 
+-osmo_ggsn_LDADD = @EXEC_LDADD@ -lgtp -L../gtp ../lib/libmisc.a $(LIBOSMOCORE_LIBS) $(LIBOSMOCTRL_LIBS) $(LIBOSMOVTY_LIBS)
++osmo_ggsn_LDADD = @EXEC_LDADD@ -lgtp -L../gtp ../pdpiface/libpdpiface.a ../lib/libmisc.a $(LIBOSMOCORE_LIBS) $(LIBOSMOCTRL_LIBS) $(LIBOSMOVTY_LIBS)
+ 
+ if ENABLE_GTP_KERNEL
+ AM_CFLAGS += -DGTP_KERNEL $(LIBGTPNL_CFLAGS)
+ osmo_ggsn_LDADD += $(LIBGTPNL_LIBS)
+ endif
+ 
+-osmo_ggsn_DEPENDENCIES = ../gtp/libgtp.la ../lib/libmisc.a
++osmo_ggsn_DEPENDENCIES = ../pdpiface/libpdpiface.a ../gtp/libgtp.la ../lib/libmisc.a
+ osmo_ggsn_SOURCES = ggsn_main.c ggsn_vty.c ggsn.c ggsn.h sgsn.c sgsn.h pco.c pco.h
+diff -u -r a/Makefile.am b/Makefile.am
+--- a/Makefile.am	2025-12-19 21:16:09.969354138 -0700
++++ b/Makefile.am	2025-12-19 21:13:28.348234657 -0700
+@@ -2,6 +2,7 @@
+ SUBDIRS = \
+ 	  include \
+ 	  lib \
++	  pdpiface \
+ 	  gtp \
+ 	  ggsn \
+ 	  sgsnemu \
+diff -u -r a/sgsnemu/Makefile.am b/sgsnemu/Makefile.am
+--- a/sgsnemu/Makefile.am	2025-12-19 21:16:09.981354815 -0700
++++ b/sgsnemu/Makefile.am	2025-12-19 21:15:32.679251208 -0700
+@@ -11,7 +11,7 @@
+ 	    $(LIBOSMOCORE_CFLAGS) \
+ 	    $(NULL)
+ 
+-sgsnemu_LDADD = @EXEC_LDADD@ -lgtp -L../gtp ../lib/libmisc.a $(LIBOSMOCORE_LIBS)
++sgsnemu_LDADD = @EXEC_LDADD@ -lgtp -L../gtp ../pdpiface/libpdpiface.a ../lib/libmisc.a $(LIBOSMOCORE_LIBS)
+ 
+ if ENABLE_GTP_KERNEL
+ AM_CFLAGS += \
+@@ -21,5 +21,5 @@
+ sgsnemu_LDADD += $(LIBGTPNL_LIBS)
+ endif
+ 
+-sgsnemu_DEPENDENCIES = ../gtp/libgtp.la ../lib/libmisc.a
++sgsnemu_DEPENDENCIES = ../gtp/libgtp.la ../lib/libmisc.a ../pdpiface/libpdpiface.a
+ sgsnemu_SOURCES = sgsnemu.c cmdline.c cmdline.h

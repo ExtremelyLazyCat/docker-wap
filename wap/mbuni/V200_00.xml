@@ -1,0 +1,275 @@
+<?xml version="1.0" ?>
+<!--
+*********************************************************************
+*  SAMSUNG GSM/GPRS Handset UA Prof
+*
+*  Version:  0.2
+*  Created:  10/02/2003
+*  Author :  Yongdae Kwon(yongdae.kwon@samsung.com)
+*  Organization:  R&D Group 3 Software Lab. SEC
+*
+*  Copyright 2002 SAMSUNG
+*
+*  Revision History
+*     0.1  Initial Release
+*     0.2  Added MMSCharacteristics
+*     0.3  Edit MMSCharateristics
+*     0.4  upgrade schema
+*
+*********************************************************************
+-->	 
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:prf="http://www.openmobilealliance.org/tech/profiles/UAPROF/ccppschema-20021212#"
+xmlns:mms="http://www.wapforum.org/profiles/MMS/ccppschema-20010111#">
+<rdf:Description rdf:ID="MyDeviceProfile">
+
+<!--********************** Hardware Platform Description ***************************************-->
+<prf:component>
+	<rdf:Description rdf:ID="HardwarePlatform">
+		<rdf:type rdf:resource="http://www.openmobilealliance.org/tech/profiles/UAPROF/ccppschema-20021212#HardwarePlatform"/>
+
+<!-- ******** Vendor/model *******-->	
+		<prf:Vendor>SAMSUNG</prf:Vendor>
+		<prf:Model>SGH-V200</prf:Model>
+		<prf:CPU>ARM7</prf:CPU>
+	
+<!--****** Display ******-->
+		<prf:ScreenSize>128x160</prf:ScreenSize>
+		<prf:ColorCapable>Yes</prf:ColorCapable>
+		<prf:BitsPerPixel>16</prf:BitsPerPixel>
+		<prf:PixelAspectRatio>1x1</prf:PixelAspectRatio>
+		<prf:ImageCapable>Yes</prf:ImageCapable>
+		<prf:ScreenSizeChar>10x16</prf:ScreenSizeChar>
+		<prf:StandardFontProportional>No</prf:StandardFontProportional>
+		<prf:OutputCharSet>
+			<rdf:Bag>
+				<rdf:li>ISO-8859-1</rdf:li>
+				<rdf:li>US-ASCII</rdf:li>
+				<rdf:li>UTF-8</rdf:li>
+				<rdf:li>ISO-10646-UCS-2</rdf:li>
+			</rdf:Bag>
+		</prf:OutputCharSet>
+		
+<!-- ******** Input capabilities ******-->		
+		<prf:InputCharSet>
+			<rdf:Bag>
+				<rdf:li>ISO-8859-1</rdf:li>
+				<rdf:li>US-ASCII</rdf:li>
+				<rdf:li>ISO-10646-UCS-2</rdf:li>
+			</rdf:Bag>
+		</prf:InputCharSet>
+		<prf:TextInputCapable>Yes</prf:TextInputCapable>
+		<prf:Keyboard>PhoneKeypad</prf:Keyboard>
+		<prf:NumberOfSoftKeys>2</prf:NumberOfSoftKeys>
+		
+<!-- ********* Audio **********-->	
+		<prf:SoundOutputCapable>Yes</prf:SoundOutputCapable>
+		<prf:VoiceInputCapable>Yes</prf:VoiceInputCapable>
+
+<!--******************************-->		
+	</rdf:Description>
+</prf:component>
+
+
+<!--********************** Software Platform Description ***************************************-->
+<prf:component>
+	<rdf:Description rdf:ID="SoftwarePlatform">
+	<rdf:type rdf:resource="http://www.openmobilealliance.org/tech/profiles/UAPROF/ccppschema-20021212#SoftwarePlatform"/>
+
+<!-- ***** Basic ******-->
+	
+<!-- ********** Java ***********-->
+
+<!-- ********* CCPP accept **********-->
+	<prf:CcppAccept>
+		<rdf:Bag>
+			<!-- Markup languages -->
+			<rdf:li>text/vnd.wap.wml</rdf:li>
+			<rdf:li>text/vnd.wap.wmlscript</rdf:li>
+			<rdf:li>application/vnd.wap.wmlc</rdf:li>
+			<rdf:li>application/vnd.wap.wbxml</rdf:li>
+			<rdf:li>application/vnd.wap.wmlscriptc</rdf:li>
+			<rdf:li>application/vnd.wap.multipart.mixed</rdf:li>
+			
+			<!-- Images -->
+			<rdf:li>image/vnd.wap.wbmp</rdf:li>
+			<rdf:li>image/gif</rdf:li>
+                        <rdf:li>image/jpeg</rdf:li>
+			
+			<!-- Audio / Multimedia  -->
+			<rdf:li>audio/midi</rdf:li>
+			<rdf:li>audio/amr</rdf:li>
+			<rdf:li>application/vnd.smaf</rdf:li>
+
+                        <!-- Nokia OTA Provisioning -->
+                        <rdf:li>application/x-nokia.settings</rdf:li>
+                        <rdf:li>application/x-wap-prov.browser-settings</rdf:li>
+		</rdf:Bag>
+	</prf:CcppAccept>
+
+	<prf:CcppAccept-Charset>
+		<rdf:Bag>
+			<rdf:li>ISO-8859-1</rdf:li>
+			<rdf:li>US-ASCII</rdf:li>
+			<rdf:li>UTF-8</rdf:li>
+                        <rdf:li>ISO-10646-UCS-2</rdf:li>
+		</rdf:Bag>
+	</prf:CcppAccept-Charset>
+
+<!--******************************-->	
+	</rdf:Description>
+</prf:component>
+
+<!--********************** Network Characteristics Description ***************************************-->
+	<prf:component>
+	<rdf:Description rdf:ID="NetworkCharacteristics">
+	<rdf:type rdf:resource="http://www.openmobilealliance.org/tech/profiles/UAPROF/ccppschema-20021212#NetworkCharacteristics"/>
+	
+	<prf:SecuritySupport>
+		<rdf:Bag>
+			<rdf:li>WTLS-1</rdf:li>
+			<rdf:li>WTLS-2</rdf:li>
+		</rdf:Bag>
+	</prf:SecuritySupport>
+	
+	<prf:SupportedBearers>
+		<rdf:Bag>
+			<rdf:li>CSD</rdf:li>
+			<rdf:li>GPRS</rdf:li>
+		</rdf:Bag>
+	</prf:SupportedBearers>
+	</rdf:Description>
+</prf:component>
+
+<!--********************** Browser UA Description ***************************************-->
+
+<prf:component>
+	<rdf:Description rdf:ID="BrowserUA">
+	<rdf:type rdf:resource="http://www.openmobilealliance.org/tech/profiles/UAPROF/ccppschema-20021212#BrowserUA"/>
+	
+<!-- ********* Browser Identification ********** -->
+	<prf:BrowserName>Nokia Browser</prf:BrowserName>
+	<prf:BrowserVersion>3.0</prf:BrowserVersion>
+	
+<!-- ********** Capabilities *********** -->
+	<prf:FramesCapable>No</prf:FramesCapable>
+	<prf:TablesCapable>Yes</prf:TablesCapable>
+	<prf:PreferenceForFrames>No</prf:PreferenceForFrames>
+
+<!-- *********** Applet / Script ********** -->	
+
+	<prf:JavaAppletEnabled>No</prf:JavaAppletEnabled>
+	<prf:JavaScriptEnabled>No</prf:JavaScriptEnabled>
+	
+<!--******************************-->
+	</rdf:Description>
+</prf:component>
+
+<!--********************** WAP Characteristics Description ***************************************-->
+
+<prf:component>
+	<rdf:Description rdf:ID="WapCharacteristics">
+	<rdf:type rdf:resource="http://www.openmobilealliance.org/tech/profiles/UAPROF/ccppschema-20021212#WapCharacteristics"/>
+
+<!--******** General ***********-->
+	<prf:WapVersion>1.2</prf:WapVersion>
+
+<!--*********** WML ************-->
+	<prf:WmlVersion>
+		<rdf:Bag>
+			<rdf:li>1.1</rdf:li>
+			<rdf:li>1.2</rdf:li>
+		</rdf:Bag>
+	</prf:WmlVersion>
+
+	<prf:WmlDeckSize>1400</prf:WmlDeckSize>
+
+<!--*********** WMLSCRIPT ************-->
+        <prf:WmlScriptVersion>
+		<rdf:Bag>
+			<rdf:li>1.2</rdf:li>
+		</rdf:Bag>
+        </prf:WmlScriptVersion>
+
+<!--*********** WMLSCRIPT LIBRARY ************-->
+        <prf:WmlScriptLibraries>
+		<rdf:Bag>
+			<rdf:li>Lang</rdf:li>
+			<rdf:li>Float</rdf:li>
+			<rdf:li>String</rdf:li>
+			<rdf:li>URL</rdf:li>
+			<rdf:li>WMLBrowser</rdf:li>
+			<rdf:li>Dialogs</rdf:li>
+		</rdf:Bag>
+        </prf:WmlScriptLibraries>  
+
+<!--*********** WTAI LIBRARY ************-->
+        <prf:WtaiLibraries>
+		<rdf:Bag>
+			<rdf:li>WTA.Public.makeCall</rdf:li>
+			<rdf:li>WTA.Public.sendDTMF</rdf:li>
+		</rdf:Bag>
+        </prf:WtaiLibraries>  
+         
+<!--******************************-->
+	</rdf:Description>
+</prf:component>
+
+<!--********************** Push Characteristics Description ***************************************-->
+<!-- Note: This entire section is TBD in this revision -->
+
+<prf:component>
+	<rdf:Description rdf:ID="PushCharacteristics">
+	<rdf:type rdf:resource="http://www.openmobilealliance.org/tech/profiles/UAPROF/ccppschema-20021212#PushCharacteristics"/>
+
+	<prf:Push-Accept>
+		<rdf:Bag>
+      <rdf:li>application/vnd.wap.sic</rdf:li> 
+		</rdf:Bag>
+	</prf:Push-Accept>
+
+	<prf:Push-Accept-AppID>
+		<rdf:Bag>
+			<rdf:li>x-wap-application:wml.ua</rdf:li>
+			<rdf:li>*</rdf:li>
+		</rdf:Bag>
+	</prf:Push-Accept-AppID>
+
+	<prf:Push-MsgSize>1400</prf:Push-MsgSize>
+	
+<!-- ********************************-->	
+	</rdf:Description>
+</prf:component>
+
+<prf:component>
+         <rdf:Description rdf:ID="MMSCharacteristics">
+  <rdf:type rdf:resource="http://www.wapforum.org/profiles/MMS/ccppschema-20010111#MmsCharacteristics"/> 
+            <mms:MmsMaxMessageSize>30720</mms:MmsMaxMessageSize>
+            <mms:MmsMaxImageResolution>352x288</mms:MmsMaxImageResolution>
+ <mms:MmsCcppAccept>
+               <rdf:Bag>
+                  <rdf:li>image/jpeg</rdf:li>
+                  <rdf:li>image/gif</rdf:li>
+                  <rdf:li>application/vnd.smaf</rdf:li>
+                  <rdf:li>text/x-iMelody</rdf:li>                  
+                  <rdf:li>text/plain</rdf:li>
+                  <rdf:li>application/vnd.wap.multipart.mixed</rdf:li>
+		  <rdf:li>audio/amr</rdf:li>
+               </rdf:Bag>
+ </mms:MmsCcppAccept>
+ <mms:MmsCcppAcceptCharSet>
+               <rdf:Bag>
+                  <rdf:li>UTF-8</rdf:li>
+                  <rdf:li>ISO-8859-1</rdf:li>
+                  <rdf:li>US-ASCII</rdf:li>
+               </rdf:Bag>
+ </mms:MmsCcppAcceptCharSet>
+  <mms:MmsVersion>
+		<rdf:Bag>
+			<rdf:li>1.0</rdf:li>
+		</rdf:Bag>
+ </mms:MmsVersion> 
+         </rdf:Description>
+      </prf:component>
+</rdf:Description>
+</rdf:RDF>

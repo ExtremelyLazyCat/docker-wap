@@ -1,0 +1,4 @@
+wireless.cingular.com 10.10.10.2
+mms.vtext.com         10.10.10.2
+proxy.mobile.att.net  10.10.10.2
+m.ms                  10.10.10.2

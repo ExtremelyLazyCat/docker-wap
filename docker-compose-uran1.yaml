@@ -1,0 +1,81 @@
+x-wap-defaults: &wap-defaults
+  build: .
+  restart: unless-stopped
+  volumes:
+    - ./wap:/etc/wap:rw
+    - /etc/timezone:/etc/timezone:ro
+    - /etc/localtime:/etc/localtime:ro
+
+services:
+  bearerbox:
+    <<: *wap-defaults
+    networks:
+      docker_osmocom:
+        ipv4_address: 172.20.0.15
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    command: /bin/bash /usr/bin/bearerbox.sh
+
+  smsbox:
+    <<: *wap-defaults
+    networks:
+      docker_osmocom:
+        ipv4_address: 172.20.0.16
+    command: /usr/local/sbin/smsbox -F /etc/wap/kannel/smsbox.log -V 1 /etc/wap/kannel/kannel.conf
+    depends_on:
+      - bearerbox
+
+  wapbox:
+    <<: *wap-defaults
+    networks:
+      docker_osmocom:
+        ipv4_address: 172.20.0.19
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    command: /bin/bash /usr/bin/wapbox.sh
+    depends_on:
+      - bearerbox
+
+  mmsbox:
+    <<: *wap-defaults
+    networks:
+      docker_osmocom:
+        ipv4_address: 172.20.0.17
+    command: /usr/local/bin/mmsbox -F /etc/wap/mbuni/mmsbox.log -V 1 /etc/wap/mbuni/mbuni.conf
+
+  mmsc:
+    <<: *wap-defaults
+    networks:
+      docker_osmocom:
+        ipv4_address: 172.20.0.18
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    command: /bin/bash /usr/bin/mmsc.sh
+    depends_on:
+      - mmsbox
+
+  ggsn:
+    <<: *wap-defaults
+    networks:
+      docker_osmocom:
+        ipv4_address: 172.20.0.14
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    command: /bin/bash /usr/bin/ggsn.sh
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+
+networks:
+  docker_osmocom:
+    external: true
+

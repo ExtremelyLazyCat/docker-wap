@@ -1,0 +1,76 @@
+<?xml version="1.0"?> 
+<!--
+Copyright © 2010 Apple Inc. All rights reserved.
+                                               
+This document and its contents are provided on an "AS IS" basis, with
+all faults, errors, omissions, and without any warranty of any kind,
+and you use it at your sole risk.  APPLE EXPRESSLY DISCLAIMS ALL
+WARRANTIES, EXPRESS OR IMPLIED, WITH RESPECT TO THIS DOCUMENT, ITS
+ACCURACY, COMPLETENESS, RELIABILITY OR AVAILABILITY, INCLUDING WITHOUT
+LIMITATION, THE IMPLIED WARRANTIES OF NON-INFRINGEMENT,
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. 
+
+IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT,
+INCIDENTAL OR CONSEQUENTIAL DAMAGES (INCLUDING WITHOUT LIMITATION,
+LOSS OF USE, DATA OR SERVICES, LOST PROFITS, OR BUSINESS INTERRUPTION)
+ARISING IN ANY WAY OUT OF THE USE OF THIS DOCUMENT OR ITS CONTENTS,
+HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING
+NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  Apple reserves the right
+to change the contents of this document or to withdraw it at any time
+without prior notice. 
+-->
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:prf="http://www.wapforum.org/profiles/MMS/ccppschema-20010111#">
+  
+  <rdf:Description rdf:ID="Profile"> 
+	<prf:component> 
+	  <rdf:Description rdf:ID="MMSCharacteristics"> 
+		<rdf:type rdf:resource="http://www.wapforum.org/profiles/MMS/ccppschema-20010111#MmsCharacteristics"/>
+		<prf:MmsVersion>
+		  <rdf:Bag>
+			<rdf:li>1.2</rdf:li>
+		  </rdf:Bag>
+		</prf:MmsVersion>
+
+		<prf:MmsCcppAccept>
+		  <rdf:Bag>
+			<rdf:li>text/plain</rdf:li>
+			<rdf:li>text/x-vCard</rdf:li>
+			<rdf:li>image/jpeg</rdf:li>
+			<rdf:li>image/gif</rdf:li>
+			<rdf:li>image/bmp</rdf:li>
+			<rdf:li>image/png</rdf:li>
+			<rdf:li>image/x-bmp</rdf:li>
+			<rdf:li>audio/amr</rdf:li>
+			<rdf:li>audio/x-amr</rdf:li>
+			<rdf:li>audio/mpeg</rdf:li>
+			<rdf:li>audio/mp3</rdf:li>
+			<rdf:li>audio/aac</rdf:li>
+			<rdf:li>audio/mp4</rdf:li>
+			<rdf:li>audio/3gpp</rdf:li>
+			<rdf:li>video/mp4</rdf:li>
+			<rdf:li>video/3gpp</rdf:li>
+			<rdf:li>video/x-h263</rdf:li>
+			<rdf:li>application/smil</rdf:li>
+			<rdf:li>application/vnd.wap.multipart.mixed</rdf:li>
+			<rdf:li>application/vnd.wap.multipart.related</rdf:li>
+		  </rdf:Bag>
+		</prf:MmsCcppAccept>
+
+		<prf:MmsCcppAcceptCharSet>
+		  <rdf:Bag>
+			<rdf:li>US-ASCII</rdf:li>
+			<rdf:li>ISO-8859-1</rdf:li>
+			<rdf:li>UTF-8</rdf:li>
+			<rdf:li>UTF-16</rdf:li>
+		  </rdf:Bag>
+		</prf:MmsCcppAcceptCharSet>
+
+		<prf:MmsMaxImageResolution>1024x1024</prf:MmsMaxImageResolution>
+		<prf:MmsMaxMessageSize>2097152</prf:MmsMaxMessageSize>
+
+	  </rdf:Description> 
+	</prf:component> 
+  </rdf:Description> 
+</RDF> 
+																			 

@@ -1,0 +1,3 @@
+http://iphonemms.apple.com/iphone/uaprof-2MB.rdf=/etc/wap/mbuni/ios_uaprof.rdf
+http://wap.samsungmobile.com/uaprof/V200_00.xml=/etc/wap/mbuni/V200_00.xml
+http://www.google.com/oha/rdf/ua-profile-kila.xml=/etc/wap/mbuni/ua-profile-kila.xml
