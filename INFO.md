@@ -150,7 +150,7 @@ capabilities of the receiving phone, some phones (e.g. my SGH-X427M) won't even 
 download an MMS message from the MMSC if the message size indicated in the WAP Push is
 larger than a certain amount. For that reason, I added the "max-wap-msize" configuration
 option in Mbuni, that will limit the message size reported in the WAP Push to that value.
-It is set at 30720kb by default, for the Samsung SGH-X427M's reported maximum message
+It is set at 30720 bytes by default, for the Samsung SGH-X427M's reported maximum message
 size.
 
 One of the patches I made in this most recent patch was to downscale images to be smaller
